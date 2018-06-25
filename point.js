@@ -5,25 +5,25 @@ app.set('view engine' , 'ejs');
 
 app.get('/',function(req,res)
 {
-    var menubaru=['Nasi Goreng','Bakmi Ayam','Nasi Padang']
+    var menubaru=['nasi goreng','bakmi ayam','nasi padang']
     res.render(__dirname+'/views/Menu',{menubaru});
 })
 
 var description=
 [
     {
-        nama:'Nasi Goreng',
-        price:20000,
+        nama:'nasi goreng',
+        price:'Rp. 20,000',
         description:'Beli Satu Gratis Piring Makan'
     },
     {
-        nama:'Bakmie Ayam',
-        price:15000,
+        nama:'bakmie ayam',
+        price:'Rp. 15,000',
         description:'Ngak Ada Ayam Berarti Bukan Bakmi'
     },
     {
-        nama:'Nasi Padang',
-        price:15000,
+        nama:'nasi padang',
+        price:'Rp. 15,000',
         description:'Bukan di Warung Tegal'
     },
 ]
@@ -31,7 +31,7 @@ var description=
 app.get('/nama', function(req, res)
 {
     var nama=req.params.nama;
-    var Menu=['Nasi Goreng','Bakmi Ayam','Nasi Padang']
+    var Menu=['nasi goreng','bakmi ayam','nasi padang']
     var menubaru=[]
     var z=0
     for(i=0;i<Menu.length;i++)
@@ -44,13 +44,18 @@ app.get('/nama', function(req, res)
             menubaru[z]=Menu[i];
             z++;
         }
+        else
+        {
+            menubaru[z]='';
+            z++;
+        }
     }
 
-    res.render(__dirname + '/views/Menu',{menubaru});
+    res.render(__dirname+'/views/Menu',{menubaru});
 })
 app.get('/satupoint/:angka', function(req, res)
 {
-    res.render(__dirname+ '/views/satupoint',{description:description[req.params.angka]});
+    res.render(__dirname+'/views/satupoint',{description:description[req.params.angka]});
 })
 
 // res.render('satu');
